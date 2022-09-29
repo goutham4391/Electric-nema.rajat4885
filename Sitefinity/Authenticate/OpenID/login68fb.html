@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LayoutCtrl">
+
+<!-- Mirrored from www.nema.org/Sitefinity/Authenticate/OpenID/login?signin=5cb5f8a2cc7bab6333aa4d4ef5a66820 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Sep 2022 19:41:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <link href="https://www.nema.org/content/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://www.nema.org/content/app/app.css" rel="stylesheet">
+</head>
+<body lang="en">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <span class="navbar-brand"></span>
+        </div>
+        <ul class="nav navbar-nav" ng-show="model.currentUser" ng-cloak>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{model.currentUser}} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="https://www.nema.org/Sitefinity/Authenticate/OpenID/{{model.logoutUrl}}">Logout</a></li>
+                    <li class="divider" ng-show="model.loginWithDifferentAccountUrl"></li>
+                    <li><a href="https://www.nema.org/Sitefinity/Authenticate/OpenID/{{model.loginWithDifferentAccountUrl}}" ng-show="model.loginWithDifferentAccountUrl">Login With Different Account</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Login Error</h1>
+            <p style="font-family: Arial, Helvetica, sans-serif; font-size: 18px;">
+                Session has timed out, please <a href="https://www.nema.org/login?returnUrl=%2F">login again</a>.
+            </p>
+        </div>
+    </div>
+
+    <div class='container page-error' ng-cloak>
+        <div class="page-header" style="display: none;">
+            <h1>Error</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="alert alert-danger">
+                    <div ng-show="model.errorMessage">{{model.errorMessage}}</div>
+                </div>
+                <div style="display: none;" class="request-id">Request Id: <span ng-bind="model.requestId"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <script id='modelJson' type='application/json'>
+        {&quot;errorMessage&quot;:&quot;Unexpected error.&quot;,&quot;requestId&quot;:&quot;37eaec14-5ee2-4ac6-b4af-a2fe03bfbc26&quot;,&quot;siteUrl&quot;:&quot;https://www.nema.org/Sitefinity/Authenticate/OpenID/&quot;,&quot;siteName&quot;:null,&quot;currentUser&quot;:null,&quot;logoutUrl&quot;:&quot;https://www.nema.org/Sitefinity/Authenticate/OpenID/logout&quot;,&quot;custom&quot;:null}
+    </script>
+    <script src="https://www.nema.org/content/libs/jquery/jquery-1.11.0.min.js"></script>
+    <script src="https://www.nema.org/content/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://www.nema.org/content/libs/angular/angular.1.2.13.min.js"></script>
+    <script src="https://www.nema.org/content/libs/encoder/encoder.min.js"></script>
+    <script src="https://www.nema.org/content/app/app.js?version=1"></script>
+</body>
+
+<!-- Mirrored from www.nema.org/Sitefinity/Authenticate/OpenID/login?signin=5cb5f8a2cc7bab6333aa4d4ef5a66820 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Sep 2022 19:41:30 GMT -->
+</html>
+

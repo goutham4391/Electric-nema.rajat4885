@@ -1,0 +1,1 @@
+$(document).ready(function(){var n,t,i;$(".newspagetitle").html("<h1>"+$("#elePageTitle").val()+"<\/h1>");n=$("#divContactUs");n&&(t=$("#hdNewsType").val(),t.toLowerCase()==="nemanews"&&n&&(i=n[0].innerHTML,$("#contactUsContent")[0].innerHTML=i))})

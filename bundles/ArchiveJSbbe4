@@ -1,0 +1,233 @@
+/* Minification failed. Returning unminified contents.
+(14,15-16): run-time error JS1014: Invalid character: `
+(14,16-17): run-time error JS1014: Invalid character: #
+(14,18-19): run-time error JS1193: Expected ',' or ')': {
+(14,25-26): run-time error JS1014: Invalid character: `
+(14,26-27): run-time error JS1195: Expected expression: )
+(15,28-29): run-time error JS1014: Invalid character: `
+(15,48-49): run-time error JS1014: Invalid character: `
+(18,9-11): run-time error JS1193: Expected ',' or ')': if
+(18,42-43): run-time error JS1004: Expected ';': {
+(21,19-20): run-time error JS1014: Invalid character: `
+(21,39-40): run-time error JS1014: Invalid character: `
+(27,19-20): run-time error JS1014: Invalid character: `
+(27,39-40): run-time error JS1014: Invalid character: `
+(32,5-6): run-time error JS1002: Syntax error: }
+(41,11-12): run-time error JS1014: Invalid character: `
+(41,12-13): run-time error JS1014: Invalid character: #
+(41,14-15): run-time error JS1193: Expected ',' or ')': {
+(41,21-22): run-time error JS1014: Invalid character: `
+(41,22-23): run-time error JS1195: Expected expression: )
+(56,32-33): run-time error JS1014: Invalid character: `
+(56,33-34): run-time error JS1014: Invalid character: #
+(56,48-49): run-time error JS1193: Expected ',' or ')': {
+(56,54-55): run-time error JS1014: Invalid character: `
+(56,55-56): run-time error JS1195: Expected expression: )
+(127,10-11): run-time error JS1195: Expected expression: ,
+(128,29-30): run-time error JS1195: Expected expression: )
+(128,31-32): run-time error JS1004: Expected ';': {
+(130,10-11): run-time error JS1195: Expected expression: ,
+(131,46-47): run-time error JS1004: Expected ';': {
+(134,5-6): run-time error JS1002: Syntax error: }
+(138,31-32): run-time error JS1004: Expected ';': {
+(149,32-33): run-time error JS1014: Invalid character: `
+(149,33-34): run-time error JS1014: Invalid character: #
+(149,48-49): run-time error JS1193: Expected ',' or ')': {
+(149,54-55): run-time error JS1014: Invalid character: `
+(149,55-56): run-time error JS1195: Expected expression: )
+(180,10-11): run-time error JS1195: Expected expression: ,
+(181,29-30): run-time error JS1195: Expected expression: )
+(181,31-32): run-time error JS1004: Expected ';': {
+(184,10-11): run-time error JS1195: Expected expression: ,
+(185,46-47): run-time error JS1004: Expected ';': {
+(188,5-6): run-time error JS1002: Syntax error: }
+ */
+$(document).ready(function () {
+    //load content initially for first tab.
+    if ($(".tabs-title.is-active a").length) {
+        $(".tabs-title.is-active a").trigger("click");
+    }
+});
+
+$(window).resize(function () {
+    setTimeout(function () {
+        //Accordian to tab view, when all tabs were collapsed in accordian, 
+        //needs to add "is-active" class to expand the view in tab view.
+        var hasActiveClass = $(".tabs-panel").hasClass("is-active");
+        if (!hasActiveClass) {
+            $(`#${_year}`).addClass("is-active");
+            var tab_li = $(`a[href='#${_year}']`).parent();
+            $(tab_li).addClass("is-active");
+        }
+        if ($(".accordion-item").length) {
+            var hasActiveAccordian = $(".accordion-item").hasClass("is-active");
+            if (!hasActiveAccordian) {
+                $(`a[href='#${_year}']`).parent().addClass("is-active");
+            }
+        }
+        if ($(".tabs-title").length) {
+            var hasActiveTab = $(".tabs-title").hasClass("is-active");
+            if (!hasActiveTab) {
+                $(`a[href='#${_year}']`).parent().addClass("is-active");
+            }
+        }
+
+        showActiveContent();
+    }, 500);
+});
+
+var _html;
+var _year;
+
+function showActiveContent() {
+    if ($(".tabs-panel").length) {
+        $(".tabs-panel").hide();
+        $(`#${_year}`).show();
+    }
+}
+
+function Tabclick(Year) {
+    $.ajax({
+        type: "GET",
+        url: "/Archive/GetNemaNews?year=" + Year + "&archiveType=" + $("#ArchiveType").val() + "&newsChannel=" + $("#NewsChannel").val(),
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        beforeSend: function () {
+            $('.ajax-loader-news').show();
+        },
+        success: function (data) {
+            var result = JSON.parse(data);
+            var contentDiv = $(`#news_content_${Year}`);
+            $(contentDiv).html("");
+
+            var html = "";
+
+
+            html += "<div class='filter-button-group mt-1'>";
+            $.each(result, function (index, month) {
+                html += "<a class='linkbutton' href='#" + month.MonthName + "'>" + month.MonthName + "</a>";
+            });
+            html += "</div>";
+
+            $.each(result, function (index, item) {
+                html += "<h2 class='mt-1' id=" + item.MonthName + ">" + item.MonthName + "</h2>";
+
+                $.each(item.ArchiveDetails, function (index, item1) {
+                    html += "<div class='grid-x record-box news-box'>";
+                    html += "<div class='small-12 medium-3 large-3 cell'>";
+                    html += "<div class='news-covers-item cell'>";
+                    if (item1.Img === null) {
+                        html += '<a href="' + item1.PageUrl + '">' + "<img src='/ResourcePackages/Nema/assets/dist/images/placeholder-images/300x265.png' alt='No Image'></a>";
+                    }
+                    else {
+                        var imgAlt = item1.Img.Title.toString().replace(/,/g, "");
+                        html += '<a href="' + item1.PageUrl + '">' + "<img src='" + item1.Img.MediaUrl + "' alt='" + imgAlt + "'></a>";
+                    }
+                    html += "</div>";
+                    html += "</div>";
+                    html += "<div class='small-12 medium-9 large-9 cell'>";
+                    html += "<div class='news-content-box content-box'>";
+                    html += "<h3><a href='" + item1.PageUrl + "' aria-label='" + item1.Title + "-" + item1.PublicationDate + "'>" + item1.Title + "</a><span> | " + item1.PublicationDate + "</span></h3>";
+                    html += "<p>" + item1.PageContent + "</p>";
+                    html += '<ul class="list content-box-options">';
+                    if (item1.RelatedTopics.length > 0) {
+                        html += '<li><div class="topics"><div class="cell title">Related Topics</div> <div class="badges cell">';
+
+                        $.each(item1.RelatedTopics, function (index, prod) {
+                            if (prod.IsPolicyTopic) {
+                                html += '<a href="' + prod.Url + '"><span>' + prod.Title + '</span></a>';
+                            }
+                            else {
+                                html += '<a href="' + prod.Url + '"><span>' + prod.Title + '</span></a>';
+                            }
+                        });
+                        html += '</div></div></li>';
+                    }
+
+                    html += '</ul>';
+                    html += "</div>";
+                    html += "</div>";
+                    html += "</div>";
+                });
+            });
+
+            _html = html;
+            _year = Year;
+
+            //clear all content before loading current to fix the accessibility issue.
+            $('[id^=news_content_]').html("");
+
+            showActiveContent();
+
+            //load current content
+            $(contentDiv).html(_html);
+
+            $('.arialabel').each(function (i) {
+                $(this).attr('aria-label', 'aria-label link-' + (i + 1));
+            });
+            $('a').each(function (i) {
+                $(this).attr('aria-label', 'aria-label link-' + (i + 1));
+            });
+        },
+        complete: function () {
+            $('.ajax-loader-news').hide();
+        },
+        error: function (xhr, status, error) {
+            $('.ajax-loader-news').hide();
+        }
+    });
+    return false;
+}
+
+function EiXtraTabclick(Year) {
+    $.ajax({
+        type: "GET",
+        url: "/Archive/GetEiXtraArchive?year=" + Year + "&archiveType=" + $("#ArchiveType").val(),
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        beforeSend: function () {
+            $('.ajax-loader-news').show();
+        },
+        success: function (data) {
+            var result = JSON.parse(data);
+            var contentDiv = $(`#news_content_${Year}`);
+            $(contentDiv).html("");
+
+            var html = "";
+
+            html = '<div class="panel-container news-panel-container">';
+            html += "<div class='mt-1'>";
+            html += "<ul class='arrowlist'>";
+            $.each(result, function (index, item) {
+                html += "<li><em class='fa fa-angle-right'></em><span><a class='linkbutton' target='_blank' rel='noopener' href='" + item.PageUrl + "'>" + item.Title + "</a></span></li>";
+            });
+            html += "</ul>";
+            html += "</div>";
+            html += "</div>";
+            _html = html;
+            _year = Year;
+
+            //clear all content before loading current to fix the accessibility issue.
+            $('[id^=news_content_]').html("");
+
+            showActiveContent();
+
+            //load current content
+            $(contentDiv).html(_html);
+            
+            $('.arialabel').each(function (i) {
+                $(this).attr('aria-label', 'aria-label link-' + (i + 1));
+            });
+            //$('#my-nema-content').html(html);
+            // $('.nema-news-accordion .newstabpanelaccordion').html("");
+            //$("#" + Year).html(html);
+        },
+        complete: function () {
+            $('.ajax-loader-news').hide();
+
+        },
+        error: function (xhr, status, error) {
+            $('.ajax-loader-news').hide();
+        }
+    });
+};

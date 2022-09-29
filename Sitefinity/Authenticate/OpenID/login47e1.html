@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="LayoutCtrl" lang="en">
+
+<!-- Mirrored from www.nema.org/Sitefinity/Authenticate/OpenID/login?signin=0ced6bf65dc104764cfe058130e96350 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Sep 2022 19:41:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://www.nema.org/content/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://www.nema.org/content/app/app.css" rel="stylesheet">
+    <link href="https://www.nema.org/ResourcePackages/Nema/assets/dist/css/app.css" rel="stylesheet">
+    <link href="https://www.nema.org/ResourcePackages/Nema/assets/dist/css/style.css" rel="stylesheet">
+    <link href="https://www.nema.org/css/toastr.css" rel="stylesheet">
+
+    <script id='modelJson' type='application/json'>
+        {&quot;providers&quot;:[{&quot;name&quot;:&quot;Default&quot;,&quot;title&quot;:&quot;Default&quot;,&quot;friendlyName&quot;:&quot;Default&quot;},{&quot;name&quot;:&quot;Nema&quot;,&quot;title&quot;:&quot;Nema&quot;,&quot;friendlyName&quot;:&quot;Nema&quot;}],&quot;defaultMembershipProviderName&quot;:&quot;Default&quot;,&quot;externalProviders&quot;:[{&quot;linkCssClass&quot;:&quot;btn btn-default&quot;,&quot;type&quot;:&quot;www.dicomstandard.org&quot;,&quot;text&quot;:&quot;dicom&quot;,&quot;href&quot;:&quot;https://www.nema.org/Sitefinity/Authenticate/OpenID/external?provider=www.dicomstandard.org&amp;signin=0ced6bf65dc104764cfe058130e96350&quot;},{&quot;linkCssClass&quot;:&quot;btn btn-default&quot;,&quot;type&quot;:&quot;www.medicalimaging.org&quot;,&quot;text&quot;:&quot;mita&quot;,&quot;href&quot;:&quot;https://www.nema.org/Sitefinity/Authenticate/OpenID/external?provider=www.medicalimaging.org&amp;signin=0ced6bf65dc104764cfe058130e96350&quot;},{&quot;linkCssClass&quot;:&quot;btn btn-default&quot;,&quot;type&quot;:&quot;www.dicomstandard.org_windows&quot;,&quot;text&quot;:&quot;windowsdicom&quot;,&quot;href&quot;:&quot;https://www.nema.org/Sitefinity/Authenticate/OpenID/external?provider=www.dicomstandard.org_windows&amp;signin=0ced6bf65dc104764cfe058130e96350&quot;},{&quot;linkCssClass&quot;:&quot;btn btn-default&quot;,&quot;type&quot;:&quot;www.medicalimaging.org_windows&quot;,&quot;text&quot;:&quot;windowsmita&quot;,&quot;href&quot;:&quot;https://www.nema.org/Sitefinity/Authenticate/OpenID/external?provider=www.medicalimaging.org_windows&amp;signin=0ced6bf65dc104764cfe058130e96350&quot;},{&quot;linkCssClass&quot;:&quot;btn btn-default&quot;,&quot;type&quot;:&quot;www.nema.org_windows&quot;,&quot;text&quot;:&quot;windowsnema&quot;,&quot;href&quot;:&quot;https://www.nema.org/Sitefinity/Authenticate/OpenID/external?provider=www.nema.org_windows&amp;signin=0ced6bf65dc104764cfe058130e96350&quot;}],&quot;resources&quot;:{&quot;rememberMe&quot;:&quot;Remember me&quot;,&quot;rememberMyChoice&quot;:&quot;Remember my choice&quot;,&quot;forgotYourPassword&quot;:&quot;Forgot your password?&quot;,&quot;emailOrUsername&quot;:&quot;Email or username&quot;,&quot;password&quot;:&quot;Password&quot;,&quot;provider&quot;:&quot;User group&quot;,&quot;login&quot;:&quot;Login&quot;,&quot;loginHeader&quot;:&quot;Login with email address&quot;,&quot;useYorAccount&quot;:&quot;or use your account in...&quot;,&quot;requestForPermission&quot;:&quot;Request for permission&quot;,&quot;grandAccess&quot;:&quot;Grand access&quot;,&quot;grandAccessTo&quot;:&quot;Grand access to:&quot;,&quot;cancel&quot;:&quot;Cancel&quot;},&quot;loginUrl&quot;:&quot;/Sitefinity/Authenticate/OpenID/login?signin=0ced6bf65dc104764cfe058130e96350&quot;,&quot;antiForgery&quot;:{&quot;name&quot;:&quot;idsrv.xsrf&quot;,&quot;value&quot;:&quot;cNCiSEaDS2cYedt9cqQEZmRA3sIipPVTTSAzRmAJbdCAj6QfB-tG5NER5DnLiWgClzRiR-m6KSj21n4FTwpwoj7mweZ1tGqZvzaL0L2An_A&quot;},&quot;allowRememberMe&quot;:true,&quot;rememberMe&quot;:true,&quot;username&quot;:null,&quot;additionalLinks&quot;:null,&quot;clientName&quot;:&quot;sitefinity&quot;,&quot;clientUrl&quot;:null,&quot;clientLogoUrl&quot;:null,&quot;errorMessage&quot;:null,&quot;requestId&quot;:&quot;eef147c8-09e2-420b-9dd0-8fa0f8429336&quot;,&quot;siteUrl&quot;:&quot;https://www.nema.org/Sitefinity/Authenticate/OpenID/&quot;,&quot;siteName&quot;:&quot;Login&quot;,&quot;currentUser&quot;:null,&quot;logoutUrl&quot;:&quot;https://www.nema.org/Sitefinity/Authenticate/OpenID/logout&quot;,&quot;custom&quot;:null}
+    </script>
+    <script src="https://www.nema.org/content/libs/jquery/jquery-1.11.0.min.js"></script>
+    <script src="https://www.nema.org/content/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://www.nema.org/content/libs/angular/angular.1.2.13.min.js"></script>
+    <script src="https://www.nema.org/content/libs/encoder/encoder.min.js"></script>
+    <script src="https://www.nema.org/ResourcePackages/Nema/assets/dist/js/toastr.min.js"></script>
+    <script src="https://www.nema.org/content/app/app.js?version=1"></script>
+    <script src="https://www.nema.org/content/app/login.js?version=1"></script>
+</head>
+<body>
+    <div class="header-accessibility skipsec" role="complementary" aria-label="Skip to Login form">
+        <a href="#login-page" title="Skip to Login form" id="anch_0" tabindex="1">Skip to Main Content</a>
+    </div>
+    <!-- custom login -->
+    <nav aria-label="Main Navigation">
+        <div class="nav-global-top login-nav">
+            <div class="grid-container">
+                <div class="grid-x">
+                    <div class="medium-8 cell">
+                        <img src="https://www.nema.org/images/default-source/default-library/logo.png" id="headerLogo" alt="NEMA Logo" class="nemalogo" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-global">
+            <div class="grid-container nav-container">
+                <div class="grid-x">
+                    <div class="medium-12 nav-global-inner cell">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="login-page-wrapper">
+        <div class="grid-container" role="main" aria-label="login page" id="login-page">
+            <div class='page-login' ng-cloak style="margin: 20px;">
+                <div class="grid-x grid-margin-x" ng-show="showErrorMessage">
+                    <div class="medium-12 large-12 cell">
+                        <div class="alert alert-danger">
+                            <span ng-show="showVerificationMessage"><strong>Error:</strong> Your email is not verified yet. Please check your inbox for the verification email, try again or <a href='https://www.nema.org/about/contact'>Contact Us</a>.</span>
+                            <span ng-show="showIPMessage"><strong>Error:</strong> Too many attempts from this machine, try again or <a href='https://www.nema.org/about/contact'>Contact Us</a>.</span>
+                            <span ng-show="showGenericMessage"><strong>Error:</strong> Failed to send the login email.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-x grid-margin-x">
+                    <div class="small-10 small-offset-1 medium-6 medium-centered medium-offset-3 cell" ng-show="model.loginUrl">
+                        <div class="panel panel-default nema-border">
+                            <div class="login-header panel-heading">
+                                <h1 class="panel-title">Login</h1>
+                            </div>
+                            <div class="panel-body" ng-show="success">
+                                <form name="form-default" ng-show="showDiv" method="post" action="https://www.nema.org/Sitefinity/Authenticate/OpenID/{{model.loginUrl}}">
+                                    <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input required name="username" autofocus id="username" type="text" class="form-control" placeholder="Username" ng-model="model.username" maxlength="100">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input required id="password" name="password" type="password" class="form-control" placeholder="Password" ng-model="model.password" maxlength="100" autocomplete="off">
+                                        </div>
+                                        <div class="form-group login-remember">
+                                            <label for="rememberMe">
+                                                <input type="checkbox" id="rememberMe" name="rememberMe" ng-model="model.rememberMe" value="true">
+                                                <strong>Remember My Login</strong>
+                                            </label>
+                                        </div>
+                                        <div ng-show="model.allowRememberMe">
+                                            <a href="#" ng-click="passwordlessLoginPage()" ng-disabled="disableForm">{{passwordlessText}}</a>
+                                        </div>
+                                        <div>
+                                            <a href="https://www.nema.org/user-registration">Create New Account</a><br />
+                                        </div>
+                                        <div>
+                                            <a href="https://www.nema.org/Content/pages/reset-password-link.html" id="resetPasswordLink">I forgot my password</a>
+                                        </div>
+                                        <div id="nema-login-links" class="text-muted">
+
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-primary" ng-click="Login($event)">{{loginText}}</button>
+                                        </div>
+                                        <div class="form-group" ng-show="windowsUser">
+                                            <span style="color: red" class="error">Please click the above "NEMA", "MITA", or "DICOM" link to login.</span>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                <form name="form" ng-show="!showDiv" method="post" action="https://www.nema.org/Sitefinity/Mvc/Controllers/">
+                                    <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <span style="color:red" class="error" ng-show="valid">Valid email is required!</span>
+                                            <input required name="email" autofocus id="email" type="email" class="form-control" placeholder="Email" ng-model="model.email" maxlength="100" ng-disabled="disableForm">
+                                        </div>
+                                        <div class="form-group login-passwordless" ng-show="model.allowRememberMe">
+                                            <label for="rememberMe">
+                                                <a href="#" ng-click="passwordlessLoginPage()" ng-disabled="disableForm">{{passwordlessText}}</a>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-primary" ng-click="Login($event)" ng-disabled="disableForm">{{loginText}}</button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li ng-repeat="link in model.additionalLinks"><a ng-href="{{link.href}}">{{link.text}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--<div class="small-12 medium-4 large-6 cell external-providers" ng-show="model.externalProviders">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Other Options</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-inline">
+                                <li>
+                                    <button class="btn btn-default" ng-click="windowsauth()">Windows</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>-->
+                </div>
+            </div>
+        </div>
+        <div>
+            <footer class="footer footer-login" id="sticky-foot">
+                <div class="grid-container">
+                    <div class="grid-x grid-margin-x">
+                        <div class="medium-4 large-3 cell">
+                            <a href="https://www.nema.org/" aria-label="Footer Logo"><img src="https://www.nema.org/images/default-source/default-library/logo.png" alt="logo" class="nemalogo"></a>
+                            <input type="hidden" id="hdnNemaURL">
+                        </div>
+                        <div class="medium-8 large-9 cell">
+                            <div class="footer-links">
+                                <div class="grid-x grid-margin-x">
+                                    <div class="small-6 medium-12 cell">
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="medium-12 large-12 cell">
+                                                <a aria-label="Home" ng-click="LoginHome($event)" style="padding-right:15px;">Home</a>
+                                                <a aria-label="Contact Us" ng-click="LoginContact($event)" style="padding-right:15px;">Contact Us</a>
+                                                <a aria-label="Privacy Policy" ng-click="LoginPP($event)" style="padding-right:15px;">Privacy Policy</a>
+                                                <a aria-label="Terms &amp; Conditions" ng-click="LoginTC($event)" style="padding-right:15px;">Terms &amp; Conditions</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+<!-- Mirrored from www.nema.org/Sitefinity/Authenticate/OpenID/login?signin=0ced6bf65dc104764cfe058130e96350 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Sep 2022 19:41:31 GMT -->
+</html>
